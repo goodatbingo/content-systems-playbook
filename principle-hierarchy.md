@@ -1,4 +1,4 @@
-# Principle Hierarchy (with LCR alignment)
+# Principle Hierarchy
 
 ## So what's this about?
 
