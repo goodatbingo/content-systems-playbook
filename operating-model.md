@@ -11,7 +11,7 @@
 
 ### 1. Authoring
 
-Designer uses AI with TIAA rules → structural pass → compliance lint → submit for review if trigger
+Designer uses AI with business rules → structural pass → compliance lint → submit for review if trigger
 
 ### 2. Review
 
