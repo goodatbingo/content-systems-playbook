@@ -1,4 +1,4 @@
-# Examples (TIAA-Style)
+# Examples
 
 ## High-risk payment failure (mobile, authenticated)
 
