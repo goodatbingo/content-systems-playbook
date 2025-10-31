@@ -1,4 +1,4 @@
-# Implementation Notes for TIAA
+# Implementation Notes
 
 ## Start Internal First
 
