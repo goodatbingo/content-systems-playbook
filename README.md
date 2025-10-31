@@ -11,7 +11,7 @@ The journey from ad-hoc content decisions to systematic operations requires unde
 - **AI-ready systems** that enable automation
 - **Maturity assessments** that guide evolution
 
-This is a focused, TIAA-specific version of the Content Systems Toolkit to guide AI-enabled content operations in a regulated financial services environment. Designed for the authenticated (post-login) experience and internal operations.
+This is a focused, industry-specific version of the Content Systems Toolkit to guide AI-enabled content operations in a regulated financial services environment. Designed for the authenticated (post-login) experience and internal operations.
 
 ---
 
