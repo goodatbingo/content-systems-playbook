@@ -21,19 +21,19 @@ This playbook is organized into the following sections:
 
 ### Foundation
 - **[Context](context.md)** - Environment snapshot and current state
-- **[Examples](examples.md)** - Concrete TIAA-style examples
+- **[Examples](examples.md)** - Concrete examples
 
 ### The Five-Part System
 1. **[Decision Frameworks](decision-frameworks.md)** - How to balance competing content needs in regulated flows
 2. **[Pattern Anatomy](pattern-anatomy.md)** - Structural templates with compliance hooks
 3. **[Principle Hierarchy](principle-hierarchy.md)** - Resolving conflicts when principles collide
-4. **[AI-Ready Rules](ai-ready-rules.md)** - Machine-actionable guidance for TIAA
+4. **[AI-Ready Rules](ai-ready-rules.md)** - Machine-actionable guidance
 
 ### Implementation
 - **[Maturity Roadmap](maturity-roadmap.md)** - 90-day implementation plan
 - **[Operating Model](operating-model.md)** - Roles, workflows, and artifacts
 - **[Metrics](metrics.md)** - Measurement framework
-- **[Implementation Notes](implementation-notes.md)** - TIAA-specific considerations
+- **[Implementation Notes](implementation-notes.md)** - Project-or-enterprise-specific considerations
 - **[Next Steps](next-steps.md)** - Immediate action items
 
 ---
