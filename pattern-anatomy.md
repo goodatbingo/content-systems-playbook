@@ -41,12 +41,12 @@ graph TD
     F --> F1["Specific next step<br/>user can take"]
     G --> G1["Escalation if<br/>self-service fails"]
 
-    style B fill:#e8e8e8,stroke:#333,stroke-width:2px
-    style C fill:#ffcccc,stroke:#cc0000,stroke-width:2px
-    style D fill:#cce5ff,stroke:#0066cc,stroke-width:2px
-    style E fill:#cce5ff,stroke:#0066cc,stroke-width:2px
-    style F fill:#ffcccc,stroke:#cc0000,stroke-width:2px
-    style G fill:#cce5ff,stroke:#0066cc,stroke-width:2px
+    style B fill:#e8e8e8,stroke:#333,stroke-width:2px,color:#333
+    style C fill:#ffcccc,stroke:#cc0000,stroke-width:2px,color:#8b0000
+    style D fill:#cce5ff,stroke:#0066cc,stroke-width:2px,color:#003d7a
+    style E fill:#cce5ff,stroke:#0066cc,stroke-width:2px,color:#003d7a
+    style F fill:#ffcccc,stroke:#cc0000,stroke-width:2px,color:#8b0000
+    style G fill:#cce5ff,stroke:#0066cc,stroke-width:2px,color:#003d7a
 ```
 
 ## Anatomical Rules
