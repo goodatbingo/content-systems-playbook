@@ -1,4 +1,4 @@
-# AI-Ready Rules for TIAA
+# AI-Ready Rules
 
 ## AI Role Definition
 
