@@ -2,9 +2,9 @@
 
 ## RACI Snapshot
 
-- **Accountable**: AI Director Content Strategy (IC-10)
+- **Accountable**: AI Director Content Strategy
 - **Responsible**: Content design guild, tool owner, taxonomy owner
-- **Consulted**: LCR, brand, research, marketing, engineering
+- **Consulted**: LCR, brand, research, marketing, engineering, Apps and Infra teams
 - **Informed**: Design leadership, product owners
 
 ## Workflows
