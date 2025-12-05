@@ -1,4 +1,4 @@
-# Metrics (Aligned to TIAA)
+# Metrics
 
 ## Efficiency
 
