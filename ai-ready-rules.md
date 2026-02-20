@@ -224,7 +224,7 @@ Generate an error message that follows all the above requirements for: [describe
 - All assertions have sources
 - Flag for human review if involves money movement, advice, or pricing
 ```
-
+ 
 ---
 
 [← Back to README](README.md) | [← Previous: Principle Hierarchy](principle-hierarchy.md) | [Next: Maturity Roadmap →](maturity-roadmap.md)
