@@ -250,6 +250,8 @@ NEVER:
 
 *This anatomical approach means new team members can construct appropriate error messages for novel situations without needing hundreds of examples. The system is generative, not just prescriptive.*
 
+> **Toolkit connection:** This error message anatomy is a regulated-finserv adaptation of [DCT Pattern 2: Error Message](../distributed-coherence-toolkit/02-adaptive-content-patterns.md). It departs in three documented ways: Impact moved from required to conditional, Severity Indicator added, YAML schemas added throughout. For the rationale behind each departure, see the [Bridge Document](bridge-to-toolkit.md#error-pattern-variation-rationale). For the five other content patterns (Feature Introduction, Onboarding, Help/Documentation, Confirmation/Success, Empty State), see the DCT's Adaptive Content Patterns and adapt using this playbook's compliance hooks. Two of those patterns — [Confirmation/Success](confirmation-pattern.md) and [Help/Documentation](help-pattern.md) — now have finserv-specific anatomies in this playbook.
+
 ## Complete YAML Schema
 
 ```yaml

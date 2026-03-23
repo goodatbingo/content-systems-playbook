@@ -160,6 +160,8 @@ Track which approach performs better:
 
 *This framework scales because it provides thinking tools, not just examples. Teams can apply it to novel situations without needing new patterns.*
 
+> **Toolkit connection:** This framework deep-dives one trade-off: conciseness vs. completeness. For six additional trade-off cards — Personalize vs. Standardize, Match vs. Adapt, Proactive vs. Reactive, Urgent vs. Patient, Explain vs. Direct, Brand vs. Clarity — see the [Decision Framework Cards](../distributed-coherence-toolkit/03-decision-framework-cards.md) in the Distributed Coherence Toolkit. Card 2 (Comprehensive vs. Minimal) is the closest DCT analogue to this framework.
+
 ---
 
 [← Back to README](README.md) | [Next: Pattern Anatomy →](pattern-anatomy.md)

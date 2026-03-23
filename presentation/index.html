@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Systems Playbook</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --sidebar-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8;
+            --highlight-color: #f472b6;
+            --success-color: #4ade80;
+            --warning-color: #fbbf24;
+            --danger-color: #ef4444;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        #sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #334155;
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .nav-header {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-item {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-color);
+        }
+
+        .nav-item.active {
+            background-color: var(--accent-color);
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        /* Main Presentation Area */
+        #main {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* Slide Container */
+        #slide-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 4rem;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .slide.prev {
+            transform: translateX(-50px);
+        }
+
+        .slide.next {
+            transform: translateX(50px);
+        }
+
+        /* Slide Content Typography */
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            background: linear-gradient(to right, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #e2e8f0;
+        }
+
+        p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #94a3b8;
+            max-width: 800px;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            margin-top: 2rem;
+        }
+
+        li {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Visual Elements & Charts */
+        .big-number {
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .card-content {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+        }
+
+        .split-view {
+            display: flex;
+            gap: 4rem;
+            width: 100%;
+            max-width: 1200px;
+            align-items: center;
+        }
+
+        .split-left,
+        .split-right {
+            flex: 1;
+        }
+
+        .diagram-box {
+            border: 2px solid #334155;
+            padding: 2rem;
+            border-radius: 12px;
+            background: #1e293b;
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        .hierarchy-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        .hierarchy-level {
+            padding: 2rem;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-radius: 8px;
+            color: #0f172a;
+        }
+
+        .level-1 {
+            background: var(--success-color);
+        }
+
+        .level-2 {
+            background: var(--accent-color);
+        }
+
+        .level-3 {
+            background: var(--highlight-color);
+        }
+
+        .vs-badge {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #64748b;
+            margin: 0 2rem;
+        }
+
+        /* Controls info */
+        #controls-info {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 1.2rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 5px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        /* Utility classes for colors */
+        .text-accent {
+            color: var(--accent-color);
+        }
+
+        .text-highlight {
+            color: var(--highlight-color);
+        }
+
+        .text-success {
+            color: var(--success-color);
+        }
+
+        .text-danger {
+            color: var(--danger-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="sidebar">
+        <div class="nav-header">Content Systems</div>
+        <!-- Generated via JS -->
+    </div>
+
+    <div id="main">
+        <div id="controls-info">1 / 12</div>
+
+        <div id="slide-container">
+            <!-- Slide 1: Intro -->
+            <div class="slide active" data-chapter="Overview">
+                <h1>Content Systems Playbook</h1>
+                <h3>Bridging Pattern Libraries to<br>Systematic Content Operations</h3>
+                <div style="margin-top: 3rem; color: #64748b;">
+                    Use Arrow Keys to Navigate
+                </div>
+            </div>
+
+            <!-- Slide 2: The Core Problem -->
+            <div class="slide" data-chapter="Overview">
+                <h2>The Gap</h2>
+                <div class="split-view">
+                    <div class="split-left">
+                        <div class="card" style="border-color: var(--danger-color);">
+                            <span class="card-title text-danger">Ad-Hoc Decisions</span>
+                            <p class="card-content">Endless debates on "concise vs clear"</p>
+                        </div>
+                    </div>
+                    <div class="vs-badge">VS</div>
+                    <div class="split-right">
+                        <div class="card" style="border-color: var(--success-color);">
+                            <span class="card-title text-success">Systematic Operations</span>
+                            <p class="card-content">Frameworks, Rules, and Automation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Decision Frameworks (Concept) -->
+            <div class="slide" data-chapter="1. Decision Frameworks">
+                <h2>Decision Frameworks</h2>
+                <h3>The Tension: Concise vs. Complete</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <span class="card-title">Concise</span>
+                        <p class="card-content">Fast, minimal friction.<br><em>"Payment failed."</em></p>
+                    </div>
+                    <div class="card">
+                        <span class="card-title">Complete</span>
+                        <p class="card-content">Comprehensive, reduces anxiety.<br><em>"Payment failed because... do
+                                this..."</em></p>
+                    </div>
+                    <div class="card">
+                        <span class="card-title">Balanced</span>
+                        <p class="card-content">Context-aware middle ground.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Decision Matrix -->
+            <div class="slide" data-chapter="1. Decision Frameworks">
+                <h2>The Decision Matrix</h2>
+                <div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="card">
+                        <span class="card-title text-accent">User Context</span>
+                        <ul style="font-size: 1.2rem; margin-top: 1rem;">
+                            <li><strong>Mid-Task:</strong> Concise (Don't interrupt)</li>
+                            <li><strong>Decision Point:</strong> Complete (Reduce anxiety)</li>
+                            <li><strong>Error State:</strong> Balanced (Clarity + Action)</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <span class="card-title text-danger">Risk Level</span>
+                        <ul style="font-size: 1.2rem; margin-top: 1rem;">
+                            <li><strong>High (Financial):</strong> Completeness Wins</li>
+                            <li><strong>Low (Nav):</strong> Conciseness Wins</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Pattern Anatomy (Intro) -->
+            <div class="slide" data-chapter="2. Pattern Anatomy">
+                <h2>Pattern Anatomy</h2>
+                <p>Don't just copy-paste. Build from components.</p>
+                <div style="margin-top: 2rem;">
+                    <div class="diagram-box">
+                        <span style="font-size: 2rem; font-weight: bold; color: var(--accent-color);">Required</span>
+                        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+                            <div style="padding: 1rem; background: #334155; border-radius: 6px;">WHAT Happened</div>
+                            <div style="padding: 1rem; background: #334155; border-radius: 6px;">Recovery ACTION</div>
+                        </div>
+                    </div>
+                    <div class="diagram-box">
+                        <span style="font-size: 2rem; font-weight: bold; color: #94a3b8;">Contextual</span>
+                        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+                            <div
+                                style="padding: 1rem; background: #1e293b; border-radius: 6px; border: 1px solid #334155;">
+                                WHY</div>
+                            <div
+                                style="padding: 1rem; background: #1e293b; border-radius: 6px; border: 1px solid #334155;">
+                                Impact</div>
+                            <div
+                                style="padding: 1rem; background: #1e293b; border-radius: 6px; border: 1px solid #334155;">
+                                Support Path</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Pattern Anatomy Example -->
+            <div class="slide" data-chapter="2. Pattern Anatomy">
+                <h2>Anatomy in Action</h2>
+                <div class="split-view">
+                    <div class="split-left">
+                        <h3>Low Risk</h3>
+                        <div class="card">
+                            <p class="card-content" style="font-family: monospace;">
+                                [WHAT] Invalid email<br>
+                                [ACTION] Check for typos
+                            </p>
+                        </div>
+                    </div>
+                    <div class="split-right">
+                        <h3>High Risk</h3>
+                        <div class="card">
+                            <p class="card-content" style="font-family: monospace; font-size: 1rem;">
+                                [SEVERITY] ⚠️ Payment Error<br>
+                                [WHAT] Processing failed<br>
+                                [WHY] Bank declined transaction<br>
+                                [IMPACT] Order not placed<br>
+                                [ACTION] Try different card<br>
+                                [SUPPORT] Call support (ID: 123)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Principle Hierarchy -->
+            <div class="slide" data-chapter="3. Principle Hierarchy">
+                <h2>Principle Hierarchy</h2>
+                <p>When principles collide, who wins?</p>
+                <div class="hierarchy-stack" style="margin-top: 3rem;">
+                    <div class="hierarchy-level level-1">
+                        LEVEL 1: Accuracy & Accessibility<br>
+                        <span style="font-size: 1rem; opacity: 0.8;">Non-negotiable. Wins over everything.</span>
+                    </div>
+                    <div class="hierarchy-level level-2">
+                        LEVEL 2: Clarity & Efficiency<br>
+                        <span style="font-size: 1rem; opacity: 0.8;">Strategic. Context decides winner.</span>
+                    </div>
+                    <div class="hierarchy-level level-3">
+                        LEVEL 3: Warmth (Brand)<br>
+                        <span style="font-size: 1rem; opacity: 0.8;">Yields to clarity and accuracy.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Context Matrix -->
+            <div class="slide" data-chapter="3. Principle Hierarchy">
+                <h2>Context Matrix</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <span class="card-title text-danger">Error States</span>
+                        <p class="card-content"><strong>Clarity WINS</strong><br>Brevity & Warmth Yield</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-title text-accent">Onboarding</span>
+                        <p class="card-content"><strong>Warmth WINS</strong><br>Clarity WINS<br>Brevity Yields</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-title">Legal Content</span>
+                        <p class="card-content"><strong>Clarity & Formality WIN</strong><br>Warmth Loses</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: AI Ready Rules -->
+            <div class="slide" data-chapter="4. AI-Ready Rules">
+                <h2>AI-Ready Rules</h2>
+                <p>Codifying the system for automation.</p>
+                <div class="split-view" style="margin-top: 4rem;">
+                    <div class="split-left">
+                        <span class="big-number">Role</span>
+                        <h3>Senior Content Designer</h3>
+                        <p> Expertise in Regulation & WCAG 2.1</p>
+                    </div>
+                    <div class="split-right">
+                        <div class="card" style="text-align: left;">
+                            <span class="card-title">Forbidden Phrases</span>
+                            <ul style="font-size: 1.2rem; margin-top: 0.5rem; color: var(--danger-color);">
+                                <li>"Unfortunately"</li>
+                                <li>"Please note"</li>
+                                <li>"Kindly"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Quality Gates -->
+            <div class="slide" data-chapter="4. AI-Ready Rules">
+                <h2>Quality Gates</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <span class="card-title">Structural</span>
+                        <p class="card-content">Are required parts present?</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-title">Compliance</span>
+                        <p class="card-content">No guarantees or unverifiable claims.</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-title">Accuracy</span>
+                        <p class="card-content">Assertions must have sources (System/Bank/Policy).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 11: Roadmap -->
+            <div class="slide" data-chapter="Implementation">
+                <h2>Maturity Roadmap</h2>
+                <div style="display: flex; gap: 1rem; width: 100%; max-width: 1000px; margin-top: 3rem;">
+                    <div class="card" style="flex: 1;">
+                        <span class="card-title" style="font-size: 1.2rem;">Phase 1</span>
+                        <p style="font-size: 1rem;">Foundation<br>(Weeks 1-2)</p>
+                    </div>
+                    <div class="card" style="flex: 1;">
+                        <span class="card-title" style="font-size: 1.2rem;">Phase 2</span>
+                        <p style="font-size: 1rem;">AI Integration<br>(Weeks 3-5)</p>
+                    </div>
+                    <div class="card" style="flex: 1;">
+                        <span class="card-title" style="font-size: 1.2rem;">Phase 3</span>
+                        <p style="font-size: 1rem;">Compliance<br>(Weeks 6-8)</p>
+                    </div>
+                    <div class="card" style="flex: 1;">
+                        <span class="card-title" style="font-size: 1.2rem;">Phase 4</span>
+                        <p style="font-size: 1rem;">Scale<br>(Weeks 9-12)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 12: Metrics -->
+            <div class="slide" data-chapter="Implementation">
+                <h2>Success Metrics</h2>
+                <div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="card">
+                        <span class="card-title text-success">Efficiency</span>
+                        <p class="card-content">Cycle time per item<br>Authoring time</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-title text-accent">Quality</span>
+                        <p class="card-content">Structural pass rate<br>Accessibility pass rate</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-title text-danger">Risk</span>
+                        <p class="card-content">Compliance incidents<br>Rollbacks</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-title text-highlight">Impact</span>
+                        <p class="card-content">Support tickets<br>Task completion</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="progress-bar" id="progress"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            let currentSlide = 0;
+            const sidebar = document.getElementById('sidebar');
+            const progress = document.getElementById('progress');
+            const controlsInfo = document.getElementById('controls-info');
+
+            // Collect Chapters
+            const chapters = [];
+            slides.forEach((slide, index) => {
+                const chapterName = slide.getAttribute('data-chapter');
+                if (chapterName && !chapters.includes(chapterName)) {
+                    chapters.push(chapterName);
+                }
+            });
+
+            // Build Sidebar
+            chapters.forEach(chapter => {
+                const div = document.createElement('div');
+                div.className = 'nav-item';
+                div.textContent = chapter;
+                div.onclick = () => jumpToChapter(chapter);
+                sidebar.appendChild(div);
+            });
+
+            function updateUI() {
+                // Update Slide Visibility
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('active', 'prev', 'next');
+                    if (index === currentSlide) {
+                        slide.classList.add('active');
+                    } else if (index < currentSlide) {
+                        slide.classList.add('prev');
+                    } else {
+                        slide.classList.add('next');
+                    }
+                });
+
+                // Update Counter
+                controlsInfo.textContent = `${currentSlide + 1} / ${totalSlides}`;
+
+                // Update Progress bar
+                const percentage = ((currentSlide + 1) / totalSlides) * 100;
+                progress.style.width = `${percentage}%`;
+
+                // Update Sidebar Highlight
+                const activeChapter = slides[currentSlide].getAttribute('data-chapter');
+                const navItems = document.querySelectorAll('.nav-item');
+                navItems.forEach(item => {
+                    if (item.textContent === activeChapter) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+
+            function jumpToChapter(chapterName) {
+                const targetIndex = Array.from(slides).findIndex(slide => slide.getAttribute('data-chapter') === chapterName);
+                if (targetIndex !== -1) {
+                    currentSlide = targetIndex;
+                    updateUI();
+                }
+            }
+
+            function nextSlide() {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateUI();
+                }
+            }
+
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateUI();
+                }
+            }
+
+            // Keyboard Nav
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'Space') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+
+            // Initial UI update
+            updateUI();
+        });
+    </script>
+</body>
+
+</html>

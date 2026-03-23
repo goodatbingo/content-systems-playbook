@@ -25,6 +25,17 @@ Change log auto-updated; rollback plan attached; metrics hooks registered
 
 Edits and outcomes feed back to rules and examples
 
+## Content Source Types
+
+Governance expectations differ by content type. Using the DCT's [Content Source Types Matrix](../distributed-coherence-toolkit/04-content-source-types-matrix.md):
+
+| Content in This Playbook | DCT Source Type | Governance Model |
+|--------------------------|----------------|------------------|
+| Legal disclaimers, pricing, compliance | **Reference** | Centrally maintained, LCR review required |
+| Error messages, confirmations, notifications | **Operational** | Template-based via Pattern Anatomy + YAML schemas |
+| AI chatbot/tool responses | **Conversational** | AI-guided with guardrails from AI-Ready Rules |
+| Value propositions, brand messaging | **Core** | Principle-driven, distributed creation |
+
 ## Artifacts
 
 - **Pattern library as system**: anatomy + rules + examples

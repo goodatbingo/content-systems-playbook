@@ -4,6 +4,8 @@
 
 Flat voice-and-tone lists break the moment principles collide. This section adds a clear hierarchy so teams know what wins when, and no one has to guess.
 
+> **Toolkit connection:** This principle hierarchy handles *content quality conflicts* (tactical). For *strategic* content decisions about your relationship with users, see the [Coherence Markers Worksheet](../distributed-coherence-toolkit/01-coherence-markers-worksheet.md) — the five dimensions (User Agency, Complexity, Trust, Balance, Attention) that must hold across all content, including content governed by this hierarchy. The markers define *what you stand for*; these principles define *what good content looks like*. See the [Bridge Document](bridge-to-toolkit.md) for the full mapping.
+
 <aside>
 
 **Scenario:** Payment error feels too warm and too short. Use the hierarchy to make Accuracy and Clarity win so users recover fast.
